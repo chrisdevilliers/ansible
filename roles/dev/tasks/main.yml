@@ -1,0 +1,6 @@
+---
+- name: Install dev tools
+  xbps:
+    name:
+      - meld
+      - vim-x11

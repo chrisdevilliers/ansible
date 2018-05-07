@@ -1,0 +1,94 @@
+---
+- name: Install X Window System
+  xbps:
+    name:
+      - xorg-minimal
+      - xorg-fonts
+      - xf86-video-intel
+      - mons
+      - xrandr
+
+- name: Configure startx
+  copy:
+    src: xinitrc
+    dest: "/home/{{ desktop_user }}/.xinitrc"
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Install window manager
+  xbps:
+    name:
+      - i3
+      - dmenu
+      - i3blocks
+      - acpi
+      - lm_sensors
+      - sysstat
+      - i3lock
+
+- name: Configure i3
+  file:
+    path: "/home/{{ desktop_user }}/.config/i3"
+    state: directory
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Configure i3
+  copy:
+    src: i3
+    dest: "/home/{{ desktop_user }}/.config/i3/config"
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Configure i3blocks
+  copy:
+    src: i3blocks.conf
+    dest: "/home/{{ desktop_user }}/.i3blocks.conf"
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Install terminal
+  xbps:
+    name: lxterminal
+
+- name: Configure lxterminal
+  file:
+    path: "/home/{{ desktop_user }}/.config/lxterminal"
+    state: directory
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Configure lxterminal
+  copy:
+    src: lxterminal.conf
+    dest: "/home/{{ desktop_user }}/.config/lxterminal/lxterminal.conf"
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Install desktop themes
+  xbps:
+    name:
+      - lxappearance
+      - numix-themes
+      - paper-icon-theme
+
+- name: Configure gtk2
+  copy:
+    src: gtkrc-2.0
+    dest: "/home/{{ desktop_user }}/.gtkrc-2.0"
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Configure gtk3
+  file:
+    path: "/home/{{ desktop_user }}/.config/gtk-3.0"
+    state: directory
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
+
+- name: Configure gtk3
+  copy:
+    src: settings.ini
+    dest: "/home/{{ desktop_user }}/.config/gtk-3.0/settings.ini"
+    owner: "{{ desktop_user }}"
+    group: "{{ desktop_user }}"
