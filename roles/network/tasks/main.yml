@@ -1,0 +1,35 @@
+---
+- name: Install network tools
+  xbps:
+    name:
+      - wicd-gtk
+      - dbus
+      - mtr
+
+- name: Disable dhcpcd
+  file:
+    path: /var/service/dhcpcd
+    state: absent
+
+- name: Disable wpa_supplicant
+  file:
+    path: /var/service/wpa_supplicant
+    state: absent
+
+- name: Add user to users group
+  user:
+    name: "{{ user }}"
+    groups: users
+    append: yes
+
+- name: Enable dbus
+  file:
+    path: /var/service/dbus
+    src: /etc/sv/dbus
+    state: link
+
+- name: Enable wicd
+  file:
+    path: /var/service/wicd
+    src: /etc/sv/wicd
+    state: link

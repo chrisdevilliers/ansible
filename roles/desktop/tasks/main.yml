@@ -11,9 +11,9 @@
 - name: Configure startx
   copy:
     src: xinitrc
-    dest: "/home/{{ desktop_user }}/.xinitrc"
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    dest: "/home/{{ user }}/.xinitrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Install window manager
   xbps:
@@ -28,24 +28,24 @@
 
 - name: Configure i3
   file:
-    path: "/home/{{ desktop_user }}/.config/i3"
+    path: "/home/{{ user }}/.config/i3"
     state: directory
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Configure i3
   copy:
     src: i3
-    dest: "/home/{{ desktop_user }}/.config/i3/config"
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    dest: "/home/{{ user }}/.config/i3/config"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Configure i3blocks
   copy:
     src: i3blocks.conf
-    dest: "/home/{{ desktop_user }}/.i3blocks.conf"
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    dest: "/home/{{ user }}/.i3blocks.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Install terminal
   xbps:
@@ -53,17 +53,17 @@
 
 - name: Configure lxterminal
   file:
-    path: "/home/{{ desktop_user }}/.config/lxterminal"
+    path: "/home/{{ user }}/.config/lxterminal"
     state: directory
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Configure lxterminal
   copy:
     src: lxterminal.conf
-    dest: "/home/{{ desktop_user }}/.config/lxterminal/lxterminal.conf"
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    dest: "/home/{{ user }}/.config/lxterminal/lxterminal.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Install desktop themes
   xbps:
@@ -75,20 +75,20 @@
 - name: Configure gtk2
   copy:
     src: gtkrc-2.0
-    dest: "/home/{{ desktop_user }}/.gtkrc-2.0"
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    dest: "/home/{{ user }}/.gtkrc-2.0"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Configure gtk3
   file:
-    path: "/home/{{ desktop_user }}/.config/gtk-3.0"
+    path: "/home/{{ user }}/.config/gtk-3.0"
     state: directory
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
 
 - name: Configure gtk3
   copy:
     src: settings.ini
-    dest: "/home/{{ desktop_user }}/.config/gtk-3.0/settings.ini"
-    owner: "{{ desktop_user }}"
-    group: "{{ desktop_user }}"
+    dest: "/home/{{ user }}/.config/gtk-3.0/settings.ini"
+    owner: "{{ user }}"
+    group: "{{ user }}"

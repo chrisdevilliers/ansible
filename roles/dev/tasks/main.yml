@@ -2,5 +2,57 @@
 - name: Install dev tools
   xbps:
     name:
+      - git
       - meld
       - vim-x11
+      - gvim-huge
+      - erlang
+
+- name: Configure vim
+  copy:
+    src: vimrc
+    dest: "/home/{{ user }}/.vimrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Configure vim
+  file:
+    path: "/home/{{ user }}/.vim/pack/all/start"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Clone vim-sensible
+  become: yes
+  become_user: "{{ user }}"
+  git:
+    repo: https://github.com/tpope/vim-sensible.git
+    dest: "/home/{{ user }}/.vim/pack/all/start/vim-sensible"
+
+- name: Clone vim-colors-solarized
+  become: yes
+  become_user: "{{ user }}"
+  git:
+    repo: https://github.com/altercation/vim-colors-solarized.git
+    dest: "/home/{{ user }}/.vim/pack/all/start/vim-colors-solarized"
+
+- name: Clone vim-airline
+  become: yes
+  become_user: "{{ user }}"
+  git:
+    repo: https://github.com/vim-airline/vim-airline.git
+    dest: "/home/{{ user }}/.vim/pack/all/start/vim-airline"
+
+- name: Clone vim-erlang-runtime
+  become: yes
+  become_user: "{{ user }}"
+  git:
+    repo: https://github.com/vim-erlang/vim-erlang-runtime.git
+    dest: "/home/{{ user }}/.vim/pack/all/start/vim-erlang-runtime"
+
+- name: Clone vim-erlang-tags
+  become: yes
+  become_user: "{{ user }}"
+  git:
+    repo: https://github.com/vim-erlang/vim-erlang-tags.git
+    dest: "/home/{{ user }}/.vim/pack/all/start/vim-erlang-tags"

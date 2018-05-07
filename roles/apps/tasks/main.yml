@@ -1,0 +1,6 @@
+---
+- name: Install apps
+  xbps:
+    name:
+      - libreoffice
+      - galculator
