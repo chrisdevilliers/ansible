@@ -39,6 +39,8 @@
     dest: "/home/{{ user }}/.config/i3/config"
     owner: "{{ user }}"
     group: "{{ user }}"
+  notify:
+    - Reload i3
 
 - name: Configure i3blocks
   copy:
@@ -46,6 +48,8 @@
     dest: "/home/{{ user }}/.i3blocks.conf"
     owner: "{{ user }}"
     group: "{{ user }}"
+  notify:
+    - Restart i3
 
 - name: Install terminal
   xbps:

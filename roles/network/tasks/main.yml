@@ -7,14 +7,14 @@
       - mtr
 
 - name: Disable dhcpcd
-  file:
-    path: /var/service/dhcpcd
-    state: absent
+  runit:
+    name: dhcpcd
+    enabled: no
 
 - name: Disable wpa_supplicant
-  file:
-    path: /var/service/wpa_supplicant
-    state: absent
+  runit:
+    name: wpa_supplicant
+    enabled: no
 
 - name: Add user to users group
   user:
@@ -23,13 +23,13 @@
     append: yes
 
 - name: Enable dbus
-  file:
-    path: /var/service/dbus
-    src: /etc/sv/dbus
-    state: link
+  runit:
+    name: dbus
+    enabled: yes
+    state: started
 
 - name: Enable wicd
-  file:
-    path: /var/service/wicd
-    src: /etc/sv/wicd
-    state: link
+  runit:
+    name: wicd
+    enabled: yes
+    state: started

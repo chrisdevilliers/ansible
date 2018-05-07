@@ -3,4 +3,4 @@
   xbps:
     name:
       - libreoffice
-      - galculator
+      - galculator-gtk3
