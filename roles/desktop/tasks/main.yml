@@ -92,7 +92,15 @@
 
 - name: Configure gtk3
   copy:
-    src: settings.ini
+    src: gtk-3.0
     dest: "/home/{{ user }}/.config/gtk-3.0/settings.ini"
     owner: "{{ user }}"
     group: "{{ user }}"
+
+- name: Install apps
+  xbps:
+    name:
+      - libreoffice
+      - galculator-gtk3
+      - evince
+      - pcmanfm

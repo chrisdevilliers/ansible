@@ -1,0 +1,26 @@
+---
+- name: Install log daemon
+  xbps:
+    name: socklog-void
+
+- name: Enable socklog-unix
+  runit:
+    name: socklog-unix
+    enabled: yes
+    state: started
+
+- name: Enable nanoklogd
+  runit:
+    name: nanoklogd
+    enabled: yes
+    state: started
+
+- name: Install ntpd
+  xbps:
+    name: openntpd
+
+- name: Enable openntpd
+  runit:
+    name: openntpd
+    enabled: yes
+    state: started
