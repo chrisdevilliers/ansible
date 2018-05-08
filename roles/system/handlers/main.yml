@@ -1,0 +1,4 @@
+---
+- name: Unmute alsa
+  debug:
+    msg: "Unmute the alsa output device by running alsamixer as user {{ user }}"

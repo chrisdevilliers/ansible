@@ -5,9 +5,8 @@
       - xorg-minimal
       - xorg-fonts
       - xf86-video-intel
-      - mons
       - xrandr
-
+      - mons
 - name: Configure startx
   copy:
     src: xinitrc
@@ -19,20 +18,18 @@
   xbps:
     name:
       - i3
-      - dmenu
+      - i3lock
       - i3blocks
       - acpi
       - lm_sensors
       - sysstat
-      - i3lock
-
+      - dmenu
 - name: Configure i3
   file:
     path: "/home/{{ user }}/.config/i3"
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
-
 - name: Configure i3
   copy:
     src: i3
@@ -41,7 +38,6 @@
     group: "{{ user }}"
   notify:
     - Reload i3
-
 - name: Configure i3blocks
   copy:
     src: i3blocks.conf
@@ -51,45 +47,24 @@
   notify:
     - Restart i3
 
-- name: Install terminal
-  xbps:
-    name: lxterminal
-
-- name: Configure lxterminal
-  file:
-    path: "/home/{{ user }}/.config/lxterminal"
-    state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Configure lxterminal
-  copy:
-    src: lxterminal.conf
-    dest: "/home/{{ user }}/.config/lxterminal/lxterminal.conf"
-    owner: "{{ user }}"
-    group: "{{ user }}"
-
-- name: Install desktop themes
+- name: Install themes
   xbps:
     name:
       - lxappearance
       - numix-themes
       - paper-icon-theme
-
 - name: Configure gtk2
-  copy:
-    src: gtkrc-2.0
+  template:
+    src: gtkrc-2.0.j2
     dest: "/home/{{ user }}/.gtkrc-2.0"
     owner: "{{ user }}"
     group: "{{ user }}"
-
 - name: Configure gtk3
   file:
     path: "/home/{{ user }}/.config/gtk-3.0"
     state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
-
 - name: Configure gtk3
   copy:
     src: gtk-3.0
@@ -97,10 +72,18 @@
     owner: "{{ user }}"
     group: "{{ user }}"
 
-- name: Install apps
+- name: Install terminal
   xbps:
-    name:
-      - libreoffice
-      - galculator-gtk3
-      - evince
-      - pcmanfm
+    name: lxterminal
+- name: Configure lxterminal
+  file:
+    path: "/home/{{ user }}/.config/lxterminal"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+- name: Configure lxterminal
+  copy:
+    src: lxterminal.conf
+    dest: "/home/{{ user }}/.config/lxterminal/lxterminal.conf"
+    owner: "{{ user }}"
+    group: "{{ user }}"

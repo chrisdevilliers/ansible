@@ -2,25 +2,53 @@
 - name: Install log daemon
   xbps:
     name: socklog-void
-
 - name: Enable socklog-unix
   runit:
     name: socklog-unix
     enabled: yes
     state: started
-
 - name: Enable nanoklogd
   runit:
     name: nanoklogd
     enabled: yes
     state: started
 
-- name: Install ntpd
+- name: Install ntp daemon
   xbps:
     name: openntpd
-
 - name: Enable openntpd
   runit:
     name: openntpd
+    enabled: yes
+    state: started
+
+- name: Install audio daemon
+  xbps:
+    name:
+      - pulseaudio
+      - alsa-utils
+      - dbus
+      - cgmanager
+      - ConsoleKit2
+  notify:
+    - Unmute alsa
+- name: Enable alsa
+  runit:
+    name: alsa
+    enabled: yes
+    state: started
+- name: Enable dbus
+  runit:
+    name: dbus
+    enabled: yes
+    state: started
+- name: Enable cgmanager
+  runit:
+    name: cgmanager
+    enabled: yes
+    state: started
+- name: Enable consolekit
+  runit:
+    name: consolekit
     enabled: yes
     state: started
