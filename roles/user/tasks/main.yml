@@ -8,7 +8,7 @@
   user:
     name: "{{ user }}"
     shell: /bin/zsh
-- name: Check oh-my-zsh
+- name: Install oh-my-zsh
   stat:
     path: "/home/{{ user }}/.oh-my-zsh"
   register: oh_my_zsh
@@ -84,6 +84,21 @@
     repo: https://github.com/vim-erlang/vim-erlang-tags.git
     dest: "/home/{{ user }}/.vim/pack/all/start/vim-erlang-tags"
 
+# See comment in roles/system/tasks/main.yml under audio.
+- name: Install docker
+  xbps:
+    name: docker
+- name: Enable docker
+  runit:
+    name: docker
+    enabled: yes
+    state: started
+- name: Add user to docker group
+  user:
+    name: "{{ user }}"
+    groups: docker
+    append: yes
+
 - name: Install desktop apps
   xbps:
     name:
@@ -92,4 +107,6 @@
       - galculator-gtk3
       - keepassxc
       - libreoffice
+      - pavucontrol
       - pcmanfm
+      - fuse-sshfs

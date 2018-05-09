@@ -42,11 +42,13 @@
     name: dbus
     enabled: yes
     state: started
-- name: Enable cgmanager
-  runit:
-    name: cgmanager
-    enabled: yes
-    state: started
+# This causes docker to fail with "Error response from daemon: cgroups: cannot found cgroup mount destination: unknown".
+# Audio still seems to work without cgmanager enabled, however pavucontrol does not work.
+#- name: Enable cgmanager
+#  runit:
+#    name: cgmanager
+#    enabled: yes
+#    state: started
 - name: Enable consolekit
   runit:
     name: consolekit

@@ -87,3 +87,9 @@
     dest: "/home/{{ user }}/.config/lxterminal/lxterminal.conf"
     owner: "{{ user }}"
     group: "{{ user }}"
+
+- name: Install fonts
+  xbps:
+    name:
+      - font-awesome
+      - liberation-fonts-ttf
