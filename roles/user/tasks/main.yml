@@ -71,6 +71,11 @@
 - name: Install Erlang/OTP
   xbps:
     name: erlang
+- name: Edit /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regexp: "added by ansible$"
+    line: "127.0.1.1		crunch.localdomain	crunch  # added by ansible"
 - name: Clone vim-erlang-runtime
   become: yes
   become_user: "{{ user }}"
