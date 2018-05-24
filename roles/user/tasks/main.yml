@@ -88,6 +88,12 @@
   git:
     repo: https://github.com/vim-erlang/vim-erlang-tags.git
     dest: "/home/{{ user }}/.vim/pack/all/start/vim-erlang-tags"
+- name: Clone vim-erlang-skeletons
+  become: yes
+  become_user: "{{ user }}"
+  git:
+    repo: https://github.com/vim-erlang/vim-erlang-skeletons.git
+    dest: "/home/{{ user }}/.vim/pack/all/start/vim-erlang-skeletons"
 
 # See comment in roles/system/tasks/main.yml under audio.
 - name: Install docker
