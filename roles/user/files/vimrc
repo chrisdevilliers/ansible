@@ -8,6 +8,7 @@ set shiftwidth=4        " Number of spaces to use for (auto)indent
 set softtabstop=4       " Number of spaces that a <Tab> counts for
 set expandtab           " Insert spaces instead of <Tab>s
 set hlsearch            " Highlight all search matches
+set showcmd             " Show command/selected size in last line
 
 let g:solarized_termcolors=256
 set background=dark

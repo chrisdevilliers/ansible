@@ -21,7 +21,7 @@
 - name: Install editor
   xbps:
     name:
-      - vim-x11
+      - vim-huge
       - gvim-huge
       - git
 - name: Configure vim
